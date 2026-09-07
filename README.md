@@ -52,12 +52,7 @@ Output
 import re
 import random
 
-# ============================================================
-# KNOWLEDGE BASE
-# ============================================================
-
 knowledge_base = {
-
     "greeting": {
         "patterns": [
             r"\bhi\b",
@@ -67,8 +62,7 @@ knowledge_base = {
             r"\bgood afternoon\b"
         ],
         "responses": [
-            "Hello! Welcome to the College Admission Desk. "
-            "How can I assist you today?"
+            "Hello! Welcome to the College Admission Desk. How can I assist you today?"
         ]
     },
 
@@ -85,9 +79,7 @@ knowledge_base = {
             r"\bspecialization\b"
         ],
         "responses": [
-            "We offer B.Tech programs in Information Technology, "
-            "Computer Science, ECE, EEE and Mechanical Engineering, "
-            "along with M.Tech and MBA programs."
+            "We offer B.Tech programs in Information Technology, Computer Science, ECE, EEE and Mechanical Engineering, along with M.Tech and MBA programs."
         ]
     },
 
@@ -100,10 +92,7 @@ knowledge_base = {
             r"\bqualification\b"
         ],
         "responses": [
-            "The eligibility criteria for B.Tech programs typically "
-            "include a minimum percentage in 10+2 with Physics, "
-            "Chemistry, and Mathematics. Specific requirements "
-            "may vary by program."
+            "The eligibility criteria for B.Tech programs typically include a minimum percentage in 10+2 with Physics, Chemistry, and Mathematics. Specific requirements may vary by program."
         ]
     },
 
@@ -115,9 +104,7 @@ knowledge_base = {
             r"\bcost\b"
         ],
         "responses": [
-            "Tuition fees vary depending on the program. Please "
-            "refer to the official website or contact the admissions "
-            "office for the detailed fee structure."
+            "Tuition fees vary depending on the program. Please refer to the official website or contact the admissions office for the detailed fee structure."
         ]
     },
 
@@ -130,9 +117,7 @@ knowledge_base = {
             r"\bimportant dates\b"
         ],
         "responses": [
-            "Application deadlines are usually announced on the "
-            "official website. Please check the admissions section "
-            "for the latest updates on important dates."
+            "Application deadlines are usually announced on the official website. Please check the admissions section for the latest updates on important dates."
         ]
     },
 
@@ -144,10 +129,7 @@ knowledge_base = {
             r"\bapplication process\b"
         ],
         "responses": [
-            "You can apply online through our admissions portal. "
-            "The process involves filling out the application form, "
-            "uploading the required documents, and paying the "
-            "application fee."
+            "You can apply online through our admissions portal. The process involves filling out the application form, uploading the required documents, and paying the application fee."
         ]
     },
 
@@ -159,10 +141,7 @@ knowledge_base = {
             r"\brequired documents\b"
         ],
         "responses": [
-            "Required documents typically include academic transcripts, "
-            "passport-sized photographs, identity proof, and caste "
-            "certificate if applicable. A detailed list is available "
-            "on the application portal."
+            "Required documents typically include academic transcripts, passport-sized photographs, identity proof, and caste certificate if applicable. A detailed list is available on the application portal."
         ]
     },
 
@@ -173,9 +152,7 @@ knowledge_base = {
             r"\bhousing\b"
         ],
         "responses": [
-            "Yes, we provide separate hostel facilities for boys and "
-            "girls on campus. You can find more details regarding "
-            "amenities and fees on the official website."
+            "Yes, we provide separate hostel facilities for boys and girls on campus. You can find more details regarding amenities and fees on the official website."
         ]
     },
 
@@ -187,9 +164,7 @@ knowledge_base = {
             r"\baddress\b"
         ],
         "responses": [
-            "You can reach our admissions office at [Phone Number] "
-            "or email us at [Email Address]. Our campus is located "
-            "at [Address]."
+            "You can reach our admissions office at [Phone Number] or email us at [Email Address]. Our campus is located at [Address]."
         ]
     },
 
@@ -218,80 +193,37 @@ knowledge_base = {
     }
 }
 
-
-# ============================================================
-# FALLBACK RESPONSES
-# ============================================================
-
 fallback_responses = [
-    "I'm sorry, I did not quite understand that. "
-    "Could you please rephrase your question?",
-
-    "I can help you with courses, eligibility, fees, "
-    "application process, documents, admission dates, "
-    "hostel and contact details."
+    "I'm sorry, I did not quite understand that. Could you please rephrase your question?",
+    "I can help you with courses, eligibility, fees, application process, documents, admission dates, hostel and contact details."
 ]
 
-
-# ============================================================
-# INTENT MATCHING
-# ============================================================
-
 def match_intent(user_input):
-    """
-    Identifies the user's intent by matching
-    the input against predefined patterns.
-    """
-
     user_input = user_input.lower().strip()
 
     for intent, data in knowledge_base.items():
-
         for pattern in data["patterns"]:
-
             if re.search(pattern, user_input):
                 return intent
 
     return None
 
-
-# ============================================================
-# RESPONSE GENERATION
-# ============================================================
-
 def get_response(user_input):
-    """
-    Generates a response based on the detected intent.
-    """
-
     intent = match_intent(user_input)
 
     if intent:
-        return random.choice(
-            knowledge_base[intent]["responses"]
-        )
+        return random.choice(knowledge_base[intent]["responses"])
 
     return random.choice(fallback_responses)
 
-
-# ============================================================
-# CHAT FUNCTION
-# ============================================================
-
 def chat():
-    """
-    Starts an interactive conversation with the chatbot.
-    """
-
-    print("\n" + "=" * 60)
-    print("       COLLEGE ADMISSION CHATBOT")
     print("=" * 60)
-
+    print("COLLEGE ADMISSION CHATBOT")
+    print("=" * 60)
     print("Welcome! I can help you with college admission queries.")
     print("Type 'bye' or 'exit' to end the conversation.\n")
 
     while True:
-
         user_input = input("You: ")
 
         if not user_input.strip():
@@ -299,7 +231,6 @@ def chat():
             continue
 
         intent = match_intent(user_input)
-
         response = get_response(user_input)
 
         print("Bot:", response)
@@ -307,48 +238,8 @@ def chat():
         if intent == "goodbye":
             break
 
-
-# ============================================================
-# SAMPLE QUERIES
-# ============================================================
-
-sample_queries = [
-    "Hi there",
-    "What courses do you offer?",
-    "What is the eligibility criteria for B.Tech?",
-    "How much is the tuition fee?",
-    "How can I apply for admission?",
-    "What documents are required?",
-    "When is the last date to apply?",
-    "Do you provide hostel facilities?",
-    "What is your contact information?",
-    "Thank you for the help",
-    "Bye"
-]
-
-
-def run_demo():
-    """
-    Runs predefined sample queries to demonstrate
-    how the chatbot works.
-    """
-
-    print("\n" + "=" * 60)
-    print("       COLLEGE ADMISSION CHATBOT - DEMO")
-    print("=" * 60)
-
-    for query in sample_queries:
-
-        print(f"\nYou: {query}")
-        print(f"Bot: {get_response(query)}")
-        print("-" * 60)
 if __name__ == "__main__":
-
-    # Run the interactive chatbot
     chat()
-
-    # Uncomment the following line to run the demo instead
-    # run_demo()
    
 ### Output
 <img width="1672" height="672" alt="image" src="https://github.com/user-attachments/assets/515fafb7-2a24-486c-9618-3faf5a45a0ae" />
