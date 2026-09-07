@@ -53,6 +53,7 @@ import re
 import random
 
 knowledge_base = {
+
     "greeting": {
         "patterns": [
             r"\bhi\b",
@@ -193,12 +194,14 @@ knowledge_base = {
     }
 }
 
-fallback_responses = [
+fallback_responses =
+[
+
     "I'm sorry, I did not quite understand that. Could you please rephrase your question?",
-    "I can help you with courses, eligibility, fees, application process, documents, admission dates, hostel and contact details."
-]
+    "I can help you with courses, eligibility, fees, application process, documents, admission dates, hostel and contact details."]
 
 def match_intent(user_input):
+
     user_input = user_input.lower().strip()
 
     for intent, data in knowledge_base.items():
@@ -209,6 +212,7 @@ def match_intent(user_input):
     return None
 
 def get_response(user_input):
+
     intent = match_intent(user_input)
 
     if intent:
@@ -217,6 +221,7 @@ def get_response(user_input):
     return random.choice(fallback_responses)
 
 def chat():
+
     print("=" * 60)
     print("COLLEGE ADMISSION CHATBOT")
     print("=" * 60)
@@ -237,8 +242,9 @@ def chat():
 
         if intent == "goodbye":
             break
-
+            
 if __name__ == "__main__":
+
     chat()
    
 ### Output
